@@ -1,0 +1,41 @@
+{
+  "name": "fetch_it_uw",
+  "version": "1.0.4",
+  "description": "A simple utility to fetchit data from url end point.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/upgradablweb/utils-uw.git"
+  },
+  "type": "module",
+  "main": "dist/fetch_it_uw.cjs.js",
+  "module": "dist/fetch_it_uw.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "import": "./dist/fetch_it_uw.es.js",
+    "require": "./dist/fetch_it_uw.cjs.js"
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": [
+      "jest-fetch-mock"
+    ]
+  },
+  "keywords": [
+    "text",
+    "join",
+    "utility"
+  ],
+  "author": "Barath",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.0",
+    "vite-plugin-dts": "^4.5.3"
+  }
+}
