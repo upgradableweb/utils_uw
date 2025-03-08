@@ -1,0 +1,35 @@
+{
+  "name": "jointext_uw",
+  "version": "1.0.0",
+  "description": "A simple utility to join text while filtering out falsy values.",
+  "main": "./dist/index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/upgradableweb/utils_uw/tree/main/packages/jointext_uw"
+  },
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
+  "scripts": {
+    "build": "vite build",
+    "test": "node ./tests/index.js",
+    "publish": "npm publish --access=public"
+  },
+  "keywords": [
+    "text",
+    "join",
+    "utility"
+  ],
+  "author": "Barath",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.13.8",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.0",
+    "vite-plugin-dts": "^4.5.3"
+  }
+}

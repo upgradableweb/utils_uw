@@ -1,0 +1,36 @@
+{
+  "name": "validvalues_uw",
+  "version": "1.0.0",
+  "description": "A simple utility validate string, number, boolean & array.",
+  "main": "./dist/index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/upgradableweb/utils_uw/tree/main/packages/valid_values"
+  },
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
+  "scripts": {
+    "build": "vite build",
+    "test": "jest ./tests/index.js",
+    "publish": "npm publish --access public"
+  },
+  "keywords": [
+    "validator",
+    "valid values",
+    "utility"
+  ],
+  "author": "Barath",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.13.8",
+    "jest": "^29.7.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.1",
+    "vite-plugin-dts": "^4.5.3"
+  }
+}
