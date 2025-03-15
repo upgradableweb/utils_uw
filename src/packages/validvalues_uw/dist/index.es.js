@@ -8,21 +8,21 @@ function u(e, t = "") {
   } else
     return { field: e, message: t };
 }
-const h = "$name is NAN", v = "$name min required $min", x = "$name max is $max", q = ({ value: e, min: t, max: r }) => {
+const h = "$name is NAN", x = "$name min required $min", v = "$name max is $max", q = ({ value: e, min: t, max: r }) => {
   if (isNaN(e))
     return h;
   if (t) {
-    const { field: i, message: n } = u(t, v);
+    const { field: i, message: n } = u(t, x);
     if (e < i)
       return n.replace("$min", t);
   }
   if (r) {
-    const { field: i, message: n } = u(r, x);
+    const { field: i, message: n } = u(r, v);
     if (e > i)
       return n.replace("$max", r);
   }
 };
-class c {
+class g {
   constructor({ default: t, value: r = t, min: i, max: n }) {
     m(this, "value");
     m(this, "min");
@@ -59,16 +59,16 @@ function b({ value: e, minlength: t, maxlength: r, trim: i }) {
   const n = t, s = r;
   i && (e = e.trim());
   let a = e.length;
-  const g = (l) => l.replace("$len", a.toString());
+  const c = (l) => l.replace("$len", a.toString());
   if (n) {
     const { field: l, message: o } = u(n, N);
     if (a < l)
-      return g(o.replace("$min", l.toString()));
+      return c(o.replace("$min", l.toString()));
   }
   if (s) {
     const { field: l, message: o } = u(s, S);
     if (a > l)
-      return g(o.replace("$max", l.toString()));
+      return c(o.replace("$max", l.toString()));
   }
 }
 class d {
@@ -86,7 +86,7 @@ class d {
     return b(this);
   }
 }
-const p = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, V = ({ required: e, type: t, value: r, ...i }) => {
+const p = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, V = "$name is not a valid email", z = ({ required: e, type: t, value: r, ...i }) => {
   let n, s;
   if (e) {
     const a = new f({ value: r, required: e });
@@ -94,27 +94,27 @@ const p = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, V = ({ required: e
       return n = a.get_value(), { value: n, error: s };
   }
   if (t === "number") {
-    const a = new c({ ...i, value: r });
+    const a = new g({ ...i, value: r });
     n = a.get_value(), s = a.get_error();
   } else {
     const a = new d({ ...i, value: r });
-    n = a.get_value(), s = a.get_error(), !s && t === "email" && !p.test(n) && (s = "$name is not a valid email");
+    n = a.get_value(), s = a.get_error(), !s && t === "email" && !p.test(n) && (s = V);
   }
   return { value: n, error: s };
-}, R = {
+}, U = {
   validateIt(e) {
-    return V(e);
+    return z(e);
   },
   string(e) {
     return new d(e);
   },
   number(e) {
-    return new c(e);
+    return new g(e);
   },
   required(e) {
     return new f(e);
   }
 };
 export {
-  R as default
+  U as default
 };

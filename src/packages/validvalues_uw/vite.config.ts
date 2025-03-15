@@ -10,12 +10,12 @@ export default defineConfig({
                 // string: "src/string.ts",
                 // number: "src/number.ts",
             },
-            formats: ["es", "cjs"],
+            formats: ["es", "cjs"]
         },
         rollupOptions: {
-            external: [],
+            external: []
         },
-        minify: true,
+        minify: true
     },
     plugins: [dts({ include: ["src"] })]
 });

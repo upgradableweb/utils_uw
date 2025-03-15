@@ -2,7 +2,7 @@ import params_uw, { ParamsUwType } from "./params_uw";
 
 type Init = RequestInit & { params?: null | ParamsUwType }
 
-const CreateEasyFetch = ({ base_url, authorization }: { base_url?: string; authorization?: string }) => {
+const CreateEasyFetch = ({ base_url, authorization }: { base_url?: string; authorization?: string } = {}) => {
 
     const request = async (url: string, { headers, params, body, ...init }: Init) => {
 
@@ -27,14 +27,19 @@ const CreateEasyFetch = ({ base_url, authorization }: { base_url?: string; autho
 
         const res = await fetch(url, { ...init, headers: new_headers, body })
         const data = await res.json()
-        const resp = { ...res, data }
+
+        const resp = { data, status: res.status, message: data.message || res.statusText }
         if (!res.ok) {
             throw resp
         }
         return resp
     }
 
-    const init = { url: undefined, params: null, body: undefined }
+    type InitType = {
+        url?: string;
+        params?: ParamsUwType;
+        body?: BodyInit;
+    }
 
 
     class FetchIt {
@@ -44,19 +49,19 @@ const CreateEasyFetch = ({ base_url, authorization }: { base_url?: string; autho
             this.url = url
         }
 
-        get({ url = this.url, params } = { url: undefined, params: null }) {
+        get({ url = this.url, params }: { url?: string, params?: ParamsUwType } = {}) {
             return request(url, { method: "GET", params })
         }
-        post({ body, url = this.url, params } = init) {
+        post({ body, url = this.url, params }: InitType = {}) {
             return request(url, { method: "POST", body, params })
         }
-        put({ url = this.url, body, params } = init) {
+        put({ url = this.url, body, params }: InitType = {}) {
             return request(url, { method: "PUT", body, params })
         }
-        delete({ body, url = this.url, params } = init) {
+        delete({ body, url = this.url, params }: InitType = {}) {
             return request(url, { method: "DETELE", body, params })
         }
-        patch({ body, url = this.url, params } = init) {
+        patch({ body, url = this.url, params }: InitType = {}) {
             return request(url, { method: "PATCH", body, params })
         }
     }

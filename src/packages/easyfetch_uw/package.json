@@ -1,6 +1,6 @@
 {
   "name": "easyfetch_uw",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple utility to fetchit data from url end point.",
   "repository": {
     "type": "git",
@@ -24,7 +24,8 @@
   },
   "scripts": {
     "build": "vite build",
-    "publish": "npm publish --access=public"
+    "publish": "npm publish --access=public",
+    "test": "node ./test/index.js"
   },
   "jest": {
     "testEnvironment": "node",
